@@ -1,4 +1,11 @@
+/*
+Badajoz, Severiano
 
+CS A200
+March 11, 2018
+
+Lab 04
+*/
 
 #include "AdjMatrixGraph.h"
 #include <string>
@@ -7,13 +14,17 @@
 	//Default Constructor
 AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 		verticies = new string[capacity]();
-		matrix = new int*[capacity]();
+		matrix = new int*[capacity];
+		for (int i = 0; i < capacity; i++)
+			matrix[i] = new int[capacity]();
 	}
 
 	//Overloaded Constructor
-	AdjMatrixGraph::AdjMatrixGraph(int numVerticies) : numVerticies(numVerticies), capacity(numVerticies * 2) {
+	AdjMatrixGraph::AdjMatrixGraph(int cap) : numVerticies(0), capacity(cap * 2) {
 		verticies = new string[capacity]();
-		matrix = new int*[capacity]();
+		matrix = new int*[capacity];
+		for (int i = 0; i < capacity; i++)
+			matrix[i] = new int[capacity]();
 	};
 
 	//Overloaded Copy Constructor
@@ -22,15 +33,13 @@ AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 		numVerticies = other.numVerticies;
 
 		verticies = new string[capacity];
-		for (int i = 0; i < numVerticies; i++) {
-			verticies[i] = other.verticies[i];
-		}
-
 		matrix = new int*[capacity];
-		for (int i = 0; i < numVerticies; i++) {
-			for (int j = 0; j < numVerticies; j++) {
-				verticies[i][j] = other.verticies[i][j];
-			}
+		for (int i = 0; i < capacity; ++i)
+		{
+			verticies[i] = other.verticies[i];
+			matrix[i] = new int[capacity];
+			for (int j = 0; j < capacity; ++j)
+				matrix[i][j] = other.matrix[i][j];
 		}
 	}
 
@@ -123,10 +132,22 @@ AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 		return ret;
 	}
 
+	//Empty Method
+	void AdjMatrixGraph::emptyGraph() {
+		delete[] verticies;
+		verticies = new string[capacity]();
+		for (int i = 0; i < numVerticies; ++i) {
+			delete[] matrix[i];
+			matrix[i] = new int[capacity]();
+		}
+
+		numVerticies = 0;
+	}
+
 	//CreateGraph Method
 	void AdjMatrixGraph::createGraph(const vector<vector<string>> data) {
 		if (numVerticies == 0) {
-			if (data.size <= capacity) {
+			if (data.size() <= capacity) {
 				//Looping through rows of data
 				for (vector<string> vec: data) {
 					//index trackers
@@ -214,17 +235,17 @@ AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 	ostream& operator<<(ostream& out, const AdjMatrixGraph& matrix) {
 		if (matrix.numVerticies > 0)
 		{
-			int i = 0, j = 0;
-			for (i = 0; i < matrix.numVerticies; ++i)
+			for (int i = 0; i < matrix.numVerticies; i++)
 			{
 				out << matrix.verticies[i] << " -> [";
-				for (j = 0; j < matrix.numVerticies - 1; ++j)
-					if (matrix.matrix[i][j] > 0) out << matrix.matrix[i][j] << " ";
+				for (int j = 0; j < matrix.numVerticies; j++)
+					if (matrix.matrix[i][j] > 0)
+						out << matrix.matrix[i][j] << " ";
 				out << "\b]\n";//backspace operator to remove unnecessary space at the end of the for loop
 			}
 			
 		}
-		else out << "EMPTY";
+		else out << "EMPTY" << endl;
 
 		return out;
 	}

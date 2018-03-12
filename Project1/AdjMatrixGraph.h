@@ -40,6 +40,9 @@ public:
 	//Traverse method
 	vector<string> traverse() const;
 
+	//Empty method
+	void emptyGraph();
+
 	//CreateGraph Method
 	void createGraph(const vector<vector<string>> data);
 
