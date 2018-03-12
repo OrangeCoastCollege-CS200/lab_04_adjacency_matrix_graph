@@ -48,6 +48,35 @@ AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 		other.numVerticies = 0;
 	}
 
+	// Overrided Assignement Operator
+	AdjMatrixGraph& AdjMatrixGraph::operator=(const AdjMatrixGraph& other) {
+		if (&other != this) {
+			if(cap)
+		}
+		else cerr << "Incorrect attempt to assign matrix to itself" << endl;
+
+	}
+
+	//Overrided Move Assignemnt Operator
+	AdjMatrixGraph& AdjMatrixGraph::operator=(AdjMatrixGraph&& other) {
+
+	}
+
+	//NumVerticies Getter
+	int getNumOfVertices() const {
+
+	}
+
+	//Capacity Getter
+	int getMaxVertices() const {
+
+	}
+
+	//Traverse method
+	vector<string> traverse() const {
+
+	}
+
 	//CreateGraph Method
 	void AdjMatrixGraph::createGraph(const vector<vector<string>> data) {
 		//Looping through rows of data
@@ -65,15 +94,7 @@ AdjMatrixGraph::AdjMatrixGraph() : numVerticies(0), capacity(CAP) {
 		}
 	}
 
-	//Overrided Assignement Operator
-	AdjMatrixGraph& AdjMatrixGraph::operator=(const AdjMatrixGraph& other) {
-
-	}
-
-	//Overrided Move Assignemnt Operator
-	AdjMatrixGraph& AdjMatrixGraph::operator=(AdjMatrixGraph&& other) {
-
-	}
+	/
 
 	//Insert Vertex Method
 	void AdjMatrixGraph::insert(const string& vertex, const vector<string> predecessors, const vector<string> successors) {
