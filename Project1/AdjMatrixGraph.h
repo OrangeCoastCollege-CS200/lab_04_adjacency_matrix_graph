@@ -25,14 +25,24 @@ public:
 	//Overloaded Move Constructor
 	AdjMatrixGraph(AdjMatrixGraph&& other);
 
-	//CreateGraph Method
-	void createGraph(const vector<vector<string>> data);
-
 	//Overrided Assignement Operator
 	AdjMatrixGraph& operator=(const AdjMatrixGraph& other);
 
 	//Overrided Move Assignemnt Operator
 	AdjMatrixGraph& operator=(AdjMatrixGraph&& other);
+
+	//NumVerticies Getter
+	int getNumOfVertices() const;
+
+	//Capacity Getter
+	int getCapactiy() const;
+
+	//Traverse method
+	vector<string> traverse() const;
+
+	//CreateGraph Method
+	void createGraph(const vector<vector<string>> data);
+
 
 	//Insert Vertex Method
 	void insert(const string& vertex, const vector<string> predecessors, const vector<string> successors);
