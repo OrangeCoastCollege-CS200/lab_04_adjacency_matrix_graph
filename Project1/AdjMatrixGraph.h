@@ -32,7 +32,7 @@ public:
 	AdjMatrixGraph& operator=(AdjMatrixGraph&& other);
 
 	//NumVerticies Getter
-	int getNumOfVertices() const;
+	int getNumVerticies() const;
 
 	//Capacity Getter
 	int getCapactiy() const;
